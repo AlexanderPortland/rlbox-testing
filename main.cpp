@@ -33,18 +33,7 @@ int main(int argc, char const *argv[]) {
 
     sandbox.destroy_sandbox();
     sandbox.create_sandbox();
-
-    auto A = 50;
-    auto B = 11101;
-    auto ok_num = sandbox.invoke_sandbox_function(add, A, B)
-                  .copy_and_verify([A, B](unsigned ret)
-                                   {
-        printf("main: we are adding %d and %d to get %d\n", A, B, ret);
-        return ret == (A + B); });
     // printf("OK? = %d\n", ok_num);
-
-    sandbox.destroy_sandbox();
-    sandbox.create_sandbox();
 
     // define our strings
     const char* s1 = "hello this is ";
@@ -61,6 +50,17 @@ int main(int argc, char const *argv[]) {
             , s2, str2_sz);
 
     auto ok_str = sandbox.invoke_sandbox_function(naive_concat, taintedStr1, taintedStr2);
+
+    sandbox.destroy_sandbox();
+    sandbox.create_sandbox();
+
+    auto A = 50;
+    auto B = 11101;
+    auto ok_num = sandbox.invoke_sandbox_function(add, A, B)
+                  .copy_and_verify([A, B](unsigned ret)
+                                   {
+        printf("main: we are adding %d and %d to get %d\n", A, B, ret);
+        return ret == (A + B); });
 
     sandbox.destroy_sandbox();
 

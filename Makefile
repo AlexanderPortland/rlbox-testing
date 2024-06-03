@@ -24,11 +24,11 @@ all: mylib.wasm mylib.wasm.c myapp
 
 clean:
 	rm -rf mylib.wasm.c mylib.wasm.h myapp *.o
-	cd rust_from_c && cargo clean && cd -
+#   cd rust_from_c && cargo clean && cd -
 
 #Step 1: build our library into wasm, using clang from the wasi-sdk
 mylib.wasm: mylib.c
-	$(WASI_CLANG) --sysroot $(WASI_SYSROOT) -O3 $(WASM_CFLAGS) dummy_main.c ./rust_from_c/src/mylib.c -o mylib.wasm
+	$(WASI_CLANG) --sysroot $(WASI_SYSROOT) -O3 $(WASM_CFLAGS) dummy_main.c mylib.c -o mylib.wasm
 
 #Step 2: use wasm2c to convert our wasm to a C implementation of wasm we can link with our app.
 mylib.wasm.c: mylib.wasm

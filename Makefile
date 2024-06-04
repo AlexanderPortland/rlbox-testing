@@ -23,12 +23,12 @@ WASM_CFLAGS=-Wl,--export-all -Wl,--no-entry -Wl,--growable-table -Wl,--stack-fir
 all: mylib.wasm mylib.wasm.c myapp
 
 clean:
-	rm -rf mylib.wasm.c mylib.wasm.h myapp *.o
-	cd rust_from_c && cargo clean && cd -
+	rm -rf mylib.wasm.c mylib.wasm.h myapp *.o mylib.wasm
+#   cd rust_from_c && cargo clean && cd -
 
 #Step 1: build our library into wasm, using clang from the wasi-sdk
 mylib.wasm: mylib.c
-	$(WASI_CLANG) --sysroot $(WASI_SYSROOT) -O3 $(WASM_CFLAGS) dummy_main.c ./rust_from_c/src/mylib.c -o mylib.wasm
+	$(WASI_CLANG) --sysroot $(WASI_SYSROOT) -O3 $(WASM_CFLAGS) dummy_main.c mylib.c -o mylib.wasm
 
 #Step 2: use wasm2c to convert our wasm to a C implementation of wasm we can link with our app.
 mylib.wasm.c: mylib.wasm
@@ -39,7 +39,7 @@ mylib.wasm.o: mylib.wasm.c
 	$(CC) -c $(WASI_RUNTIME_FILES) -c $(WASI_RUNTIME_FILES2) -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) mylib.wasm.c
 
 myapp: mylib.wasm.o
-	$(CXX) -std=c++17 main.cpp -o myapp -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) *.o -lpthread
+	$(CXX) -std=c++17 main.cpp -o myapp -I../rlbox/code/include -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) *.o -lpthread
 
 
 

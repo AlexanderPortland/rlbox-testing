@@ -25,27 +25,13 @@ RLBOX_DEFINE_BASE_TYPES_FOR(mylib, wasm2c);
 // Declare callback function we're going to call from sandboxed code.
 void hello_cb(rlbox_sandbox_mylib& _, tainted_mylib<const char*> str);
 
+#define RESET true
+
 int main(int argc, char const *argv[]) {
     rlbox_sandbox_mylib sandbox;
     sandbox.create_sandbox();
 
-    sandbox.invoke_sandbox_function(hello);
-
-    // sandbox.destroy_sandbox();
-    // sandbox.create_sandbox();
-    sandbox.reset_sandbox();
-
-    auto A = 50;
-    auto B = 11101;
-    auto ok_num = sandbox.invoke_sandbox_function(add, A, B)
-                  .copy_and_verify([A, B](unsigned ret)
-                                   {
-        printf("main: we are adding %d and %d to get %d\n", A, B, ret);
-        return ret == (A + B); });
-    // printf("OK? = %d\n", ok_num);
-
-    sandbox.destroy_sandbox();
-    sandbox.create_sandbox();
+    // STR DEMO
 
     // define our strings
     const char* s1 = "hello this is ";
@@ -62,6 +48,58 @@ int main(int argc, char const *argv[]) {
             , s2, str2_sz);
 
     auto ok_str = sandbox.invoke_sandbox_function(naive_concat, taintedStr1, taintedStr2);
+
+    char *str1 = taintedStr1.UNSAFE_unverified();
+    char *str2 = taintedStr2.UNSAFE_unverified();
+    char *str_final = ok_str.UNSAFE_unverified();
+
+    printf("main: str1--%s\n", str1);
+    printf("main: str2--%s\n", str2);
+    printf("main: str_final--%s\n", str_final);
+
+    #if RESET
+    sandbox.reset_sandbox();
+    #else
+    sandbox.destroy_sandbox();
+    sandbox.create_sandbox();
+    #endif
+
+    printf("main: str1--%s\n", str1);
+    printf("main: str2--%s\n", str2);
+    printf("main: str_final--%s\n", str_final);
+
+    // NUM DEMO
+
+    auto sec_num_res = sandbox.invoke_sandbox_function(leak_secret_num);
+    auto const_sec_num_res = sandbox.invoke_sandbox_function(leak_const_secret_num);
+
+    int *secret_num_ptr = sec_num_res.UNSAFE_unverified();
+    int *const_secret_num_ptr = const_sec_num_res.UNSAFE_unverified();
+
+    printf("main: secret_num--%d\n", *secret_num_ptr);
+    printf("main: const_secret_num--%d\n", *const_secret_num_ptr);
+
+//     sandbox.invoke_sandbox_function(hello);
+
+    #if RESET
+    sandbox.reset_sandbox();
+    #else
+    sandbox.destroy_sandbox();
+    sandbox.create_sandbox();
+    #endif
+
+    printf("main: secret_num--%d\n", *secret_num_ptr);
+    printf("main: const_secret_num--%d\n", *const_secret_num_ptr);
+
+    // ADD DEMO
+
+    auto C = 1234;
+    auto D = 4321;
+    auto ok_num2 = sandbox.invoke_sandbox_function(add, C, D)
+                  .copy_and_verify([C, D](unsigned ret)
+                                   {
+        printf("main: we are adding %d and %d to get %d\n", C, D, ret);
+        return ret == (C + D); });
 
     sandbox.destroy_sandbox();
 

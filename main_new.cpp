@@ -29,6 +29,33 @@ int main(int argc, char const *argv[]) {
     rlbox_sandbox_mylib sandbox;
     sandbox.create_sandbox();
 
+    // sandbox.invoke_sandbox_function(hello);
+
+    // sandbox.destroy_sandbox();
+    // sandbox.create_sandbox();
+    sandbox.reset_sandbox();
+    sandbox.destroy_sandbox();
+    sandbox.create_sandbox();
+
+    auto A = 50;
+    auto B = 11101;
+    auto ok_num = sandbox.invoke_sandbox_function(add, A, B)
+                  .copy_and_verify([A, B](unsigned ret)
+                                   {
+        printf("main: we are adding %d and %d to get %d\n", A, B, ret);
+        return ret == (A + B); });
+    // printf("OK? = %d\n", ok_num);
+
+    sandbox.reset_sandbox();
+
+    auto C = 1234;
+    auto D = 4321;
+    auto ok_num2 = sandbox.invoke_sandbox_function(add, C, D)
+                  .copy_and_verify([C, D](unsigned ret)
+                                   {
+        printf("main: we are adding %d and %d to get %d\n", C, D, ret);
+        return ret == (C + D); });
+
     // define our strings
     const char* s1 = "hello this is ";
     size_t str1_sz = strlen(s1);
@@ -45,28 +72,12 @@ int main(int argc, char const *argv[]) {
 
     auto ok_str = sandbox.invoke_sandbox_function(naive_concat, taintedStr1, taintedStr2);
 
-    char *str1 = taintedStr1.UNSAFE_unverified();
-    char *str2 = taintedStr2.UNSAFE_unverified();
-    char *str_final = ok_str.UNSAFE_unverified();
-
-    printf("main: str1--%s\n", str1);
-    printf("main: str2--%s\n", str2);
-    printf("main: str_final--%s\n", str_final);
+    char *str = ok_str.UNSAFE_unverified();
+    printf("main: str--%s\n", str);
 
     sandbox.reset_sandbox();
 
-    printf("main: str1--%s\n", str1);
-    printf("main: str2--%s\n", str2);
-    printf("main: str_final--%s\n", str_final);
-
-    auto C = 1234;
-    auto D = 4321;
-    auto ok_num2 = sandbox.invoke_sandbox_function(add, C, D)
-                  .copy_and_verify([C, D](unsigned ret)
-                                   {
-        printf("main: we are adding %d and %d to get %d\n", C, D, ret);
-        return ret == (C + D); });
-
+    printf("main: post-reset str--%s\n", str);
     sandbox.destroy_sandbox();
 
     return 0;

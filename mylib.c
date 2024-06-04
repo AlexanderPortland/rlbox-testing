@@ -10,7 +10,7 @@ void hello() {
 }
 
 unsigned add(unsigned x, unsigned y){
-    // printf("we are adding %d and %d to get %d\n", x, y, ret);
+    printf("we are adding %d and %d to get %d\n", x, y, ret);
     return x + y;
 }
 

@@ -1,0 +1,33 @@
+w2c_0x5F_memory_base: 0x0
+w2c_0x5F_table_base: 0x1
+
+w2c_g0: 0x100000              // start of preserved
+w2c_CONST_SECRET_NUM2: 0x100000
+w2c_0x5F_dso_handle: 0x100000
+w2c_0x5F_global_base: 0x100000
+
+w2c_stderr: 0x1003f4
+w2c_stdout: 0x1003f8
+
+w2c_SECRET_NUM: 0x100d58
+w2c_0x5F_stderr_FILE: 0x100d60
+w2c_0x5F_stderr_used: 0x100dd0
+w2c_0x5F_stdout_FILE: 0x100dd8
+w2c_0x5F_stdout_used: 0x100e48
+
+w2c_errno: 0x101040
+w2c_0x5F_stdin_used: 0x101044 // end of preserved
+
+
+w2c_0x5F_heap_base: 0x101490
+
+
+w2c_0x5F_progname: 0x101468
+w2c_program_invocation_short_name: 0x101468
+w2c_0x5F_progname_full: 0x10146c
+w2c_program_invocation_name: 0x10146c
+
+w2c_0x5F_libc: 0x101470
+
+w2c_0x5F_hwcap: 0x10148c
+w2c_0x5F_data_end: 0x101490

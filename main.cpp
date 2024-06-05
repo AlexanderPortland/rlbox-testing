@@ -19,8 +19,6 @@
 #include "benchmark.hpp"
 #include "demo.hpp"
 
-#define release_assert(cond, msg) if (!(cond)) { fputs(msg, stderr); abort(); }
-
 using namespace std;
 using namespace std::chrono;
 using namespace rlbox;
@@ -29,19 +27,30 @@ using namespace rlbox;
 RLBOX_DEFINE_BASE_TYPES_FOR(mylib, wasm2c);
 
 int main(int argc, char const *argv[]) {
-    int ITERS = 1000000;
+    int ITERS = 1'000'000;
     bool RESET = true;
 
-    // run_benchmark(1000000, RESET);
+    // run_benchmark(ITERS, RESET);
 
     rlbox_sandbox_mylib sandbox;
     sandbox.create_sandbox();
 
-    add_demo(&sandbox, RESET);
+    // add_demo(&sandbox, RESET);
+    // add_demo(&sandbox, RESET);
+    // add_demo(&sandbox, RESET);
 
-    str_demo(&sandbox, RESET);
+    // sandbox.invoke_sandbox_function(hello);
+    // sandbox.reset_sandbox();
+    // sandbox.invoke_sandbox_function(a);
 
-    secret_num_demo(&sandbox, RESET);
+    sandbox.invoke_sandbox_function(print_stdout);
+
+    sandbox.reset_sandbox();
+    
+
+    // str_demo(&sandbox, RESET);
+
+    // secret_num_demo(&sandbox, RESET);
 
     sandbox.destroy_sandbox();
 

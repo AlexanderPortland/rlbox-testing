@@ -45,12 +45,27 @@ char* naive_concat(char* x, char* y){
     return str;
 }
 
+void print_stdout() { 
+    fprintf(stdout, "box: hello im in stdout\n");
+}
+
+void print_stderr(){
+    fprintf(stderr, "box: hello im in stdout\n");
+}
+
 long* m() {
     long i = 0xdefaced;
     long j = 0xdeadbeef;
     long k = 0xfacedff;
 
     printf("i: %p, j: %p, k: %p\n", &i, &j, &k);
+    // printf("gabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgogabagoogabooogaoaosgaogsodooaogoasgo\n");
+    fprintf(stderr, "skskxskskskkskskskskkdkdskskkskakdkskklsklklsklskldklsklskldlskskxskskskkskskskskkdkdskskkskakdkskklsklklsklskldklsklskldlskskxskskskkskskskskkdkdskskkskakdkskklsklklsklskldklsklskldl\n");
+    fprintf(stderr, "errors\n");
+    fprintf(stderr, "no this cant be right wth\n");
+    fprintf(stderr, "im printing lik ea gagillion times\n");
+
+    // FIXME: wth can you print to stderr multiple times??
 
     return &k;
 }

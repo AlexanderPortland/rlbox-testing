@@ -24,6 +24,10 @@ using namespace rlbox;
 // Define base type for mylib using the noop sandbox
 RLBOX_DEFINE_BASE_TYPES_FOR(mylib, wasm2c);
 
+#define REMAKING_OUT_COLOR  "\x1b[93m" // 91 for red, 92 for green
+#define RESETTING_OUT_COLOR "\x1b[94m"
+#define COLOR_RESET         "\x1b[0m"
+
 void str_test(rlbox_sandbox_mylib* sandbox){
     const char* s1 = "hello this is ";
     size_t str1_sz = strlen(s1);
@@ -102,9 +106,9 @@ void run_benchmark(int ITERS, bool RESET){
 
     auto duration = duration_cast<microseconds>(stop - start);
     if (RESET){
-        printf("finished %d iters in %lld microseconds (w one sandbox)\n", ITERS, duration.count());
+        printf("finished %d iters in %lld microseconds (w " RESETTING_OUT_COLOR "one shared sandbox" COLOR_RESET ")\n", ITERS, duration.count());
     } else {
-        printf("finished %d iters in %lld microseconds (w a new sandbox every time)\n", ITERS, duration.count());
+        printf("finished %d iters in %lld microseconds (w " REMAKING_OUT_COLOR "a new sandbox every time" COLOR_RESET ")\n", ITERS, duration.count());
     }
     
 }

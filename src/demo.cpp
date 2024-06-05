@@ -36,8 +36,8 @@ void reset_or_remake(rlbox_sandbox_mylib* sandbox, bool reset){
 }
 
 void add_demo(rlbox_sandbox_mylib* sandbox, bool reset){
-    auto C = 123456;
-    auto D = 654321;
+    auto C = std::rand() % 100;
+    auto D = std::rand() % 1000;
     auto ok_num2 = sandbox->invoke_sandbox_function(add, C, D)
               .copy_and_verify([C, D](unsigned ret)
                                {

@@ -43,9 +43,24 @@ int main(int argc, char const *argv[]) {
     // sandbox.reset_sandbox();
     // sandbox.invoke_sandbox_function(a);
 
+    
+
+    // sandbox.invoke_sandbox_function(print_stdout);
+    // sandbox.invoke_sandbox_function(print_stderr);
+    // sandbox.invoke_sandbox_function(print_stdout);
     sandbox.invoke_sandbox_function(print_stdout);
+    // sandbox.invoke_sandbox_function(print_stdout);
 
     sandbox.reset_sandbox();
+    
+    // sandbox.invoke_sandbox_function(print_stdout);
+    // sandbox.invoke_sandbox_function(print_stderr);
+    // sandbox.invoke_sandbox_function(print_stderr);
+    // sandbox.invoke_sandbox_function(print_stderr);
+
+    
+
+    // sandbox.invoke_sandbox_function(print_stdout);
     
 
     // str_demo(&sandbox, RESET);

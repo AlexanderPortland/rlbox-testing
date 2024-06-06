@@ -1,0 +1,18 @@
+okay so initially...
+stdout_used (0x100bf8) -> 88 0b 10 00
+stdout 	    (0x1001a0) -> 88 0b 10 00
+stdout_file (0x100b88) -> 05
+stderr_used (0x100b80) -> 10 0b 10 00
+stderr      (0x10019c) -> 10 0b 10 00
+stderr_file (0x100b10) -> 
+
+but after writing to stdout...
+stdout_used (0x100bf8) -> 88 0b 10 00
+stdout      (0x1001a0) -> 88 0b 10 00
+
+my theory is that at first you can use stdout to find the ptr to the fd, but any time after that you have to use stdout_used, which is why printing twice relies on those bytes
+
+
+its the row of <- ff ff ff ff | ff ff ff ff -> that's causing it i think
+
+the console redirect (where in mem the consoles after hte first get written) is pointed to at 100b90 (right after fd)

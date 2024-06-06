@@ -50,7 +50,7 @@ void print_stdout() {
 }
 
 void print_stderr(){
-    fprintf(stderr, "box: hello im in stdout\n");
+    fprintf(stderr, "box: hello im in stderr\n");
 }
 
 long* m() {

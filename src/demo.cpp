@@ -94,3 +94,30 @@ void secret_num_demo(rlbox_sandbox_mylib* sandbox, bool reset){
     printf("main: secret_num--0x%x\n", *secret_num_ptr);
     printf("main: const_secret_num--0x%x\n", *const_secret_num_ptr);
 }
+
+void stdout_demo(rlbox_sandbox_mylib* sandbox, bool reset){
+    printf("main: im going to try to print to stderr three times\n");
+    for (int i = 0; i < 3; i++){ sandbox->invoke_sandbox_function(print_stdout, i); }
+
+    reset_or_remake(sandbox, reset);
+
+    printf("main: now ill try three more times\n");
+    for (int i = 0; i < 3; i++){ sandbox->invoke_sandbox_function(print_stdout, i); }
+
+    reset_or_remake(sandbox, reset);
+}
+
+void stderr_demo(rlbox_sandbox_mylib* sandbox, bool reset){
+    // FIXME: wth can you print to stderr multiple times?? 
+    // whyyyy?? is this out of scope for rlbox since theyre less privacy-focused??
+    
+    printf("main: im going to try to print to stderr three times\n");
+    for (int i = 0; i < 3; i++){ sandbox->invoke_sandbox_function(print_stderr, i); }
+
+    reset_or_remake(sandbox, reset);
+
+    printf("main: now ill try three more times\n");
+    for (int i = 0; i < 3; i++){ sandbox->invoke_sandbox_function(print_stderr, i); }
+
+    reset_or_remake(sandbox, reset);
+}

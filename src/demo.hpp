@@ -30,5 +30,7 @@ RLBOX_DEFINE_BASE_TYPES_FOR(mylib, wasm2c);
 extern void add_demo(rlbox_sandbox_mylib*, bool);
 extern void str_demo(rlbox_sandbox_mylib*, bool);
 extern void secret_num_demo(rlbox_sandbox_mylib*, bool);
+void stdout_demo(rlbox_sandbox_mylib*, bool);
+void stderr_demo(rlbox_sandbox_mylib*, bool);
 
 #endif

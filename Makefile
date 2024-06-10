@@ -38,10 +38,10 @@ mylib.wasm.c: mylib.wasm
 
 #Step 3: compiling and linking our application with our library
 mylib.wasm.o: mylib.wasm.c
-	$(CC) -c $(WASI_RUNTIME_FILES) -c $(WASI_RUNTIME_FILES2) -O3 -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) mylib.wasm.c
+	$(CC) -c -g $(WASI_RUNTIME_FILES) -c $(WASI_RUNTIME_FILES2) -O3 -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) mylib.wasm.c
 
 myapp: mylib.wasm.o
-	$(CXX) -std=c++17 main.cpp $(SRC_FILES) -o myapp -I . -I ./src -I../rlbox/code/include -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) *.o -lpthread
+	$(CXX) -std=c++17 -g main.cpp $(SRC_FILES) -o myapp -I . -I ./src -I../rlbox/code/include -I$(RLBOX_INCLUDE) -I$(RLBOX_ROOT)/include -I$(WASM2C_RUNTIME_PATH) *.o -lpthread
 
 
 

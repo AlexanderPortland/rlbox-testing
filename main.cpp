@@ -35,9 +35,13 @@ int main(int argc, char const *argv[]) {
     rlbox_sandbox_mylib sandbox;
     sandbox.create_sandbox();
 
+    // sandbox.invoke_sandbox_function(print_stdout, 1234);
 
+    malloc_demo(&sandbox, RESET);
     // stdout_demo(&sandbox, RESET);
-    str_demo(&sandbox, RESET);
+    // secret_num_demo(&sandbox, RESET);
+    // str_demo(&sandbox, RESET);
+    // add_demo(&sandbox, RESET);
 
     sandbox.destroy_sandbox();
 

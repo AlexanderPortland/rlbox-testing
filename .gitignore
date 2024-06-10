@@ -3,4 +3,5 @@
 *.o
 build
 myapp
+*.dSYM
 # *memory*.txt

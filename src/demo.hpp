@@ -32,5 +32,6 @@ extern void str_demo(rlbox_sandbox_mylib*, bool);
 extern void secret_num_demo(rlbox_sandbox_mylib*, bool);
 void stdout_demo(rlbox_sandbox_mylib*, bool);
 void stderr_demo(rlbox_sandbox_mylib*, bool);
+void malloc_demo(rlbox_sandbox_mylib*, bool);
 
 #endif

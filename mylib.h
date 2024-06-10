@@ -11,6 +11,7 @@ extern "C" {
     long* a();
     void print_stdout(int);
     void print_stderr(int);
+    char* malloc_func(size_t);
     // void echo(const char* str);
     // void call_cb(void (*cb) (const char* str));
 #ifdef __cplusplus

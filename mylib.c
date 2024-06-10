@@ -49,6 +49,11 @@ void print_stderr(int i){
     fprintf(stderr, "box: hello im in stderr%d\n", i);
 }
 
+char* malloc_func(size_t size) { 
+    char* c = malloc(size);
+    return c;
+}
+
 long* m() {
     long i = 0xdefaced;
     long j = 0xdeadbeef;

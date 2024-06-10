@@ -102,7 +102,7 @@ void stdout_demo(rlbox_sandbox_mylib* sandbox, bool reset){
     reset_or_remake(sandbox, reset);
 
     printf("main: now ill try three more times\n");
-    for (int i = 0; i < 3; i++){ sandbox->invoke_sandbox_function(print_stdout, i); }
+    for (int i = 3; i < 6; i++){ sandbox->invoke_sandbox_function(print_stdout, i); }
 
     reset_or_remake(sandbox, reset);
 }
@@ -117,7 +117,26 @@ void stderr_demo(rlbox_sandbox_mylib* sandbox, bool reset){
     reset_or_remake(sandbox, reset);
 
     printf("main: now ill try three more times\n");
-    for (int i = 0; i < 3; i++){ sandbox->invoke_sandbox_function(print_stderr, i); }
+    for (int i = 3; i < 6; i++){ sandbox->invoke_sandbox_function(print_stderr, i); }
+
+    reset_or_remake(sandbox, reset);
+}
+
+void malloc_demo(rlbox_sandbox_mylib* sandbox, bool reset){
+    // FIXME: this seems to indicate that allocator metadata is being reset properly by our global approach
+    size_t size = 100;
+
+    auto ok_malloc1 = sandbox->invoke_sandbox_function(malloc_func, size);
+    char *ptr1 = ok_malloc1.UNSAFE_unverified();
+
+    printf("main: malloced1 at %p, with size 0x%llx\n", ptr1, size);
+
+    reset_or_remake(sandbox, reset);
+    
+    auto ok_malloc2 = sandbox->invoke_sandbox_function(malloc_func, size);
+    char *ptr2 = ok_malloc2.UNSAFE_unverified();
+
+    printf("main: malloced2 at %p, with size 0x%llx\n", ptr1, size);
 
     reset_or_remake(sandbox, reset);
 }

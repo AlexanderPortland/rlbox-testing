@@ -43,6 +43,7 @@ char* naive_concat(char* x, char* y){
 
 void print_stdout(int i) { 
     fprintf(stdout, "box: hello im in stdout%d\n", i);
+    // fprintf(stderr, "box: hello im in stderr%d\n", i);
 }
 
 void print_stderr(int i){

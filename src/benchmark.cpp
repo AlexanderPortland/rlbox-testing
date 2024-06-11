@@ -82,6 +82,7 @@ void run_benchmark(int ITERS, bool RESET){
             sandbox.create_sandbox();
             call_function(&sandbox);
             sandbox.destroy_sandbox();
+            // if ((i % 1000) == 0) printf("done %d\n", i);
         }
     } else {
         rlbox_sandbox_mylib sandbox;
@@ -97,6 +98,7 @@ void run_benchmark(int ITERS, bool RESET){
             sandbox.reset_sandbox();
             // auto sandbox_reset = high_resolution_clock::now();
             // total_reset += duration_cast<microseconds>(sandbox_reset - func_called);
+            // if ((i % 1000) == 0) printf("done %d\n", i);
         }
 
         sandbox.destroy_sandbox();

@@ -96,7 +96,7 @@ void secret_num_demo(rlbox_sandbox_mylib* sandbox, bool reset){
 }
 
 void stdout_demo(rlbox_sandbox_mylib* sandbox, bool reset){
-    printf("main: im going to try to print to stderr three times\n");
+    printf("main: im going to try to print to stdout three times\n");
     for (int i = 0; i < 3; i++){ sandbox->invoke_sandbox_function(print_stdout, i); }
 
     reset_or_remake(sandbox, reset);

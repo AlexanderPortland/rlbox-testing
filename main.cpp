@@ -28,22 +28,23 @@ RLBOX_DEFINE_BASE_TYPES_FOR(mylib, wasm2c);
 
 int main(int argc, char const *argv[]) {
     int ITERS = 1'000'000;
-    bool RESET = true;
+    bool RESET = false;
 
-    // run_benchmark(ITERS, RESET);
+    // run_benchmark(ITERS, false); // remember to not stash globals when benchmarking creation
 
-    rlbox_sandbox_mylib sandbox;
-    sandbox.create_sandbox();
+    // rlbox_sandbox_mylib sandbox;
+    // sandbox.create_sandbox();
 
     // sandbox.invoke_sandbox_function(print_stdout, 1234);
 
-    malloc_demo(&sandbox, RESET);
+    // malloc_demo(&sandbox, RESET);
     // stdout_demo(&sandbox, RESET);
+    // stderr_demo(&sandbox, RESET);
     // secret_num_demo(&sandbox, RESET);
     // str_demo(&sandbox, RESET);
     // add_demo(&sandbox, RESET);
 
-    sandbox.destroy_sandbox();
+    // sandbox.destroy_sandbox();
 
     return 0;
 }

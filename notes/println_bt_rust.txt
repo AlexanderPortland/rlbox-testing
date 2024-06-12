@@ -1,0 +1,38 @@
+#0  0x00007ffff7577b71 in _IO_acquire_lock_fct (p=<synthetic pointer>) at ./libio/libioP.h:883
+#1  __GI__IO_fwrite (buf=<optimized out>, size=0x1, count=0x1d, fp=0x7ffff76d4760 <_IO_2_1_stdout_>) at ./libio/iofwrite.c:37
+#2  0x00007ffff7f5fa18 in w2c_wasi.snapshot.preview1_fd_write () from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
+#3  0x00007ffff7e71b0b in w2c_myapp__lib_std0x3A0x3Aio0x3A0x3Abuffered0x3A0x3Abufwriter0x3A0x3ABufWriter0x24LT0x24W0x24GT0x240x3A0x3Aflush_buf0x3A0x3Ah96816b7fc0441785 ()
+   from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
+#4  0x00007ffff7e8db2f in w2c_myapp__lib_0x5F0x24LT0x24std0x2E0x2Eio0x2E0x2Ebuffered0x2E0x2Elinewritershim0x2E0x2ELineWriterShim0x24LT0x24W0x24GT0x240x24u200x24as0x24u200x24std0x2E0x2Eio0x2E0x2EWrite0x24GT0x240x3A0x3Awrite_all0x3A0x3Ahdfcefb6f9b4e2120 () from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
+#5  0x00007ffff7e91aed in w2c_myapp__lib_0x5F0x24LT0x24std0x2E0x2Eio0x2E0x2EWrite0x2E0x2Ewrite_fmt0x2E0x2EAdapter0x24LT0x24T0x24GT0x240x24u200x24as0x24u200x24core0x2E0x2Efmt0x2E0x2EWrite0x24GT0x240x3A0x3Awrite_str0x3A0x3Ah6cc3c533f80dad43 () from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
+#6  0x00007ffff7e468e0 in w2c_myapp__lib_core0x3A0x3Afmt0x3A0x3Awrite0x3A0x3Ah357835ca9428cab2 ()
+   from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
+#7  0x00007ffff7e7e6f0 in w2c_myapp__lib_0x5F0x24LT0x240x24RF0x24std0x2E0x2Eio0x2E0x2Estdio0x2E0x2EStdout0x24u200x24as0x24u200x24std0x2E0x2Eio0x2E0x2EWrite0x24GT0x240x3A0x3Awrite_fmt0x3A0x3Ah7bc1039eeb7b6979 () from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
+#8  0x00007ffff7e7ecf9 in w2c_myapp__lib_std0x3A0x3Aio0x3A0x3Astdio0x3A0x3A_print0x3A0x3Ah86877cda86a16a83 ()
+   from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
+#9  0x00007ffff7ec4b5a in w2c_myapp.lib_div_numbers_sandbox () from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
+#10 0x00007ffff7e39aef in invoke_sandbox_div_numbers_c () from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
+#11 0x00005555555664a0 in myapp_lib::{impl#2}::invoke (arg=...) at src/lib.rs:23
+#12 0x000055555556435b in alohomora::sandbox::execute_sandbox<myapp_lib::div_numbers, alohomora::bbox::bbox_type::BBox<myapp_lib::Numbers, alohomora::policy::policies::no_policy::NoPolicy>, u32> (t=...) at /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/alohomora/src/sandbox/mod.rs:25
+#13 0x0000555555560aee in bin::main () at src/bin.rs:15
+#14 0x00005555555654fb in core::ops::function::FnOnce::call_once<fn(), ()> () at /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/core/src/ops/function.rs:250
+#15 0x00005555555616ce in std::sys_common::backtrace::__rust_begin_short_backtrace<fn(), ()> (f=0x555555560ab0 <bin::main>)
+    at /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/std/src/sys_common/backtrace.rs:154
+#16 0x0000555555566051 in std::rt::lang_start::{closure#0}<()> () at /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/std/src/rt.rs:166
+#17 0x00005555555a7c25 in core::ops::function::impls::{impl#2}::call_once<(), (dyn core::ops::function::Fn<(), Output=i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe)> ()
+    at library/core/src/ops/function.rs:284
+#18 std::panicking::try::do_call<&(dyn core::ops::function::Fn<(), Output=i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe), i32> () at library/std/src/panicking.rs:504
+#19 std::panicking::try<i32, &(dyn core::ops::function::Fn<(), Output=i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe)> () at library/std/src/panicking.rs:468
+#20 std::panic::catch_unwind<&(dyn core::ops::function::Fn<(), Output=i32> + core::marker::Sync + core::panic::unwind_safe::RefUnwindSafe), i32> () at library/std/src/panic.rs:142
+#21 std::rt::lang_start_internal::{closure#2} () at library/std/src/rt.rs:148
+#22 std::panicking::try::do_call<std::rt::lang_start_internal::{closure_env#2}, isize> () at library/std/src/panicking.rs:504
+#23 std::panicking::try<isize, std::rt::lang_start_internal::{closure_env#2}> () at library/std/src/panicking.rs:468
+#24 std::panic::catch_unwind<std::rt::lang_start_internal::{closure_env#2}, isize> () at library/std/src/panic.rs:142
+#25 std::rt::lang_start_internal () at library/std/src/rt.rs:148
+#26 0x000055555556602a in std::rt::lang_start<()> (main=0x555555560ab0 <bin::main>, argc=0x1, argv=0x7fffffffe678, sigpipe=0x0)
+    at /rustc/cae0791da47bb01f16885eb233dcd66b0093a6e1/library/std/src/rt.rs:165
+#27 0x0000555555560ebe in main ()
+#28 0x00007ffff752824a in __libc_start_call_main (main=main@entry=0x555555560ea0 <main>, argc=argc@entry=0x1, argv=argv@entry=0x7fffffffe678) at ../sysdeps/nptl/libc_start_call_main.h:58
+#29 0x00007ffff7528305 in __libc_start_main_impl (main=0x555555560ea0 <main>, argc=0x1, argv=0x7fffffffe678, init=<optimized out>, fini=<optimized out>, rtld_fini=<optimized out>,
+    stack_end=0x7fffffffe668) at ../csu/libc-start.c:360
+#30 0x00005555555609d1 in _start ()

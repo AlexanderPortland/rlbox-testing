@@ -1,0 +1,3 @@
+- it seems like the difference in call chains is stdout using fwritex() rather than stdio_write directly
+- this is probably where the check is inserted by rlbox
+- but we can just stub the preview_fd1 function in the miniwasi runtime when we want to prevent it

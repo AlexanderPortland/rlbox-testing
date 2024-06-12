@@ -1,0 +1,13 @@
+#0  w2c_wasi__snapshot__preview1_fd_write (wasi_data=0x7fffffffdb10, fd=0x1, iov=iov@entry=0xffb90, iovcnt=iovcnt@entry=0x2, pnum=pnum@entry=0xffb8c) at ../rlbox_wasm2c_sandbox/src/wasm2c_rt_minwasi.c:485
+#1  0x000055555555fa48 in w2c_mylib_writev_0 (var_p2=0x2, var_p1=0xffb90, var_p0=<optimized out>, instance=0x7fffffffda80) at mylib.wasm.c:8505
+#2  w2c_mylib_0x5F_stdio_write_0 (instance=0x7fffffffda80, var_p0=0x100a88, var_p1=<optimized out>, var_p2=0x1) at mylib.wasm.c:8567
+#3  0x00005555555600e1 in w2c_mylib_0x5F_fwritex_0 (instance=0x7fffffffda80, var_p0=0x100029, var_p1=0x1, var_p2=<optimized out>) at mylib.wasm.c:8995
+#4  0x0000555555563254 in w2c_mylib_printf_core (instance=instance@entry=0x7fffffffda80, var_p0=var_p0@entry=0x100a88, var_p1=0x10002a, var_p1@entry=0x100010, var_p2=var_p2@entry=0xfffd8, var_p3=var_p3@entry=0xfff60, var_p4=var_p4@entry=0xfffb0) at mylib.wasm.c:9713
+#5  0x00005555555674eb in w2c_mylib_vfprintf_0 (instance=0x7fffffffda80, var_p0=0x100a88, var_p1=0x100010, var_p2=<optimized out>) at mylib.wasm.c:9492
+#6  0x0000555555567df3 in w2c_mylib_fprintf_0 (var_p2=0xffff0, var_p1=0x100010, var_p0=<optimized out>, instance=0x7fffffffda80) at mylib.wasm.c:14376
+#7  w2c_mylib_print_stdout_0 (var_p0=<optimized out>, instance=0x7fffffffda80) at mylib.wasm.c:1913
+#8  w2c_mylib_print_stdout (instance=0x7fffffffda80, var_p0=<optimized out>) at mylib.wasm.c:1224
+#9  0x000055555555d46e in rlbox::rlbox_wasm2c_sandbox::impl_invoke_with_func_ptr<void (int), void (int), int>(void (*)(int), int&&) (this=0x7fffffffda80, func_ptr=0x555555567db0 <w2c_mylib_print_stdout>) at ../rlbox_wasm2c_sandbox/include/rlbox_wasm2c_sandbox.hpp:936
+#10 0x000055555555d4f8 in rlbox::rlbox_sandbox<rlbox::rlbox_wasm2c_sandbox>::INTERNAL_invoke_with_func_ptr<void (int), int&>(char const*, void*, int&) (this=0x7fffffffda80, func_name=0x55555556f0fd "print_stdout", func_ptr=0x555555567db0 <w2c_mylib_print_stdout>) at ../rlbox/code/include/rlbox_sandbox.hpp:796
+#11 0x000055555555cf56 in stdout_demo (sandbox=0x7fffffffda80, reset=0x1) at src/demo.cpp:100
+#12 0x000055555555651b in main (argc=0x1, argv=0x7fffffffe888) at main.cpp:41

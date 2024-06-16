@@ -44,7 +44,7 @@ void add_demo(rlbox_sandbox_mylib* sandbox, bool reset){
     printf("main: we are adding %d and %d to get %d\n", C, D, ret);
     return ret == (C + D); });
 
-    reset_or_remake(sandbox, reset);
+    // reset_or_remake(sandbox, reset);
 }
 
 void str_demo(rlbox_sandbox_mylib* sandbox, bool reset){
@@ -72,7 +72,7 @@ void str_demo(rlbox_sandbox_mylib* sandbox, bool reset){
     printf("main: str2--%s\n", str2);
     printf("main: str_final--%s\n", str_final);
 
-    reset_or_remake(sandbox, reset);
+    // reset_or_remake(sandbox, reset);
 
     printf("main: str1--%s\n", str1);
     printf("main: str2--%s\n", str2);
@@ -89,7 +89,7 @@ void secret_num_demo(rlbox_sandbox_mylib* sandbox, bool reset){
     printf("main: secret_num--0x%x\n", *secret_num_ptr);
     printf("main: const_secret_num--0x%x\n", *const_secret_num_ptr);
 
-    reset_or_remake(sandbox, reset);
+    // reset_or_remake(sandbox, reset);
 
     printf("main: secret_num--0x%x\n", *secret_num_ptr);
     printf("main: const_secret_num--0x%x\n", *const_secret_num_ptr);
@@ -104,7 +104,7 @@ void stdout_demo(rlbox_sandbox_mylib* sandbox, bool reset){
     printf("main: now ill try three more times\n");
     for (int i = 3; i < 6; i++){ sandbox->invoke_sandbox_function(print_stdout, i); }
 
-    reset_or_remake(sandbox, reset);
+    // reset_or_remake(sandbox, reset);
 }
 
 void stderr_demo(rlbox_sandbox_mylib* sandbox, bool reset){
@@ -119,7 +119,7 @@ void stderr_demo(rlbox_sandbox_mylib* sandbox, bool reset){
     printf("main: now ill try three more times\n");
     for (int i = 3; i < 6; i++){ sandbox->invoke_sandbox_function(print_stderr, i); }
 
-    reset_or_remake(sandbox, reset);
+    // reset_or_remake(sandbox, reset);
 }
 
 void malloc_demo(rlbox_sandbox_mylib* sandbox, bool reset){
@@ -131,12 +131,12 @@ void malloc_demo(rlbox_sandbox_mylib* sandbox, bool reset){
 
     printf("main: malloced1 at %p, with size 0x%llx\n", ptr1, size);
 
-    reset_or_remake(sandbox, reset);
+    // reset_or_remake(sandbox, reset);
     
     auto ok_malloc2 = sandbox->invoke_sandbox_function(malloc_func, size);
     char *ptr2 = ok_malloc2.UNSAFE_unverified();
 
     printf("main: malloced2 at %p, with size 0x%llx\n", ptr1, size);
 
-    reset_or_remake(sandbox, reset);
+    // reset_or_remake(sandbox, reset);
 }

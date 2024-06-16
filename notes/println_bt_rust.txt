@@ -1,3 +1,5 @@
+-- you can get this from gdb by just running "b write" to put a breakpoint in stdio write --
+
 #0  0x00007ffff7577b71 in _IO_acquire_lock_fct (p=<synthetic pointer>) at ./libio/libioP.h:883
 #1  __GI__IO_fwrite (buf=<optimized out>, size=0x1, count=0x1d, fp=0x7ffff76d4760 <_IO_2_1_stdout_>) at ./libio/iofwrite.c:37
 #2  0x00007ffff7f5fa18 in w2c_wasi.snapshot.preview1_fd_write () from /ifs/CS/replicated/home/aportlan/Desktop/etos-ssh/Alohomora/example/myapp/../myapp_lib/libmyapp_lib_sandbox.so
